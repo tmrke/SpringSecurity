@@ -21,4 +21,15 @@ public class PeopleController {
 
         return "person";
     }
+
+    @GetMapping("admin")
+    public String admin(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
+        Person person = personDetails.getPerson();
+        model.addAttribute(person);
+
+        return "admin";
+    }
 }

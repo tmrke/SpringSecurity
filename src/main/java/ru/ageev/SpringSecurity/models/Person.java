@@ -1,7 +1,6 @@
 package ru.ageev.SpringSecurity.models;
 
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -30,10 +29,14 @@ public class Person {
     @Column(name = "date")
     private Date date;
 
-    public Person(String username, String password, Date date) {
+    @Column(name = "role")
+    private String role;
+
+    public Person(String username, String password, Date date, String role) {
         this.username = username;
         this.password = password;
         this.date = date;
+        this.role = role;
     }
 
     public Person() {
@@ -69,5 +72,13 @@ public class Person {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

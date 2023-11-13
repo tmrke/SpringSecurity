@@ -7,8 +7,6 @@ import org.springframework.validation.Validator;
 import ru.ageev.SpringSecurity.models.Person;
 import ru.ageev.SpringSecurity.service.RegistrationValidService;
 
-import java.util.zip.DataFormatException;
-
 @Component
 public class PersonValidator implements Validator {
     private final RegistrationValidService registrationValidService;

@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Person</title>
+    <title>Admin</title>
 </head>
 <body>
+Hello Admin!
+
 <div th:text="${person.getUsername()}"></div>
 <div th:text="${person.getPassword()}"></div>
 <div th:text="${person.getDate()}"></div>
 <div th:text="${person.getRole()}"></div>
 
 <form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="Logout">
+  <input type="submit" value="Logout">
 </form>
 
 </body>
