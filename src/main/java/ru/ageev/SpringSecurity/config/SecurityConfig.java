@@ -29,13 +29,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (auth) -> auth.requestMatchers("/auth/login", "/error", "auth/registration", "/auth/login_error").permitAll()
                                 .requestMatchers("/admin").hasRole("ADMIN")
-                                .anyRequest().hasAnyRole("GUEST", "USER", "ADMIN")
+                                .requestMatchers("/people").hasRole("ADMIN")
+                                .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(
                         (form) -> form.
                                 loginPage("/auth/login")
                                 .loginProcessingUrl("/process_login")
-                                .defaultSuccessUrl("/person", true)
+                                .defaultSuccessUrl("/owner", true)
                                 .failureUrl("/auth/login?error")
                 )
                 .logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/auth/login"));
