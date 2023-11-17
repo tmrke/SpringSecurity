@@ -1,10 +1,8 @@
 package ru.ageev.SpringSecurity.util;
 
-import java.util.Date;
-
 public class PersonErrorResponse {
     private String message;
-    private Date errorTime;
+    private long errorTime;
 
     public PersonErrorResponse(String message, long errorTime) {
         this.message = message;
@@ -19,11 +17,11 @@ public class PersonErrorResponse {
         this.message = message;
     }
 
-    public Date getErrorTime() {
+    public long getErrorTime() {
         return errorTime;
     }
 
-    public void setErrorTime(Date errorTime) {
+    public void setErrorTime(long errorTime) {
         this.errorTime = errorTime;
     }
 

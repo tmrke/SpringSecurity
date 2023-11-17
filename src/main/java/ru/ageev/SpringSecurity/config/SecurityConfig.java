@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,10 +27,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(AbstractHttpConfigurer::disable)      //TODO включить!
                 .authorizeHttpRequests(
-                        (auth) -> auth.requestMatchers("/auth/login", "/error", "auth/registration", "/auth/login_error").permitAll()
+                        (auth) -> auth.requestMatchers(
+                                        "/auth/login", "/error", "auth/registration", "/auth/login_error", "/auth", "/auth/create"
+                                ).permitAll()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .requestMatchers("/people").hasRole("ADMIN")
+                                .requestMatchers("/auth/create").permitAll()
                                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(

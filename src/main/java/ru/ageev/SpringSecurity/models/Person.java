@@ -4,6 +4,7 @@ package ru.ageev.SpringSecurity.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.sql.Date;
 
@@ -27,9 +28,11 @@ public class Person {
     private String password;
 
     @Column(name = "date")
+    //@NotEmpty(message = "date can't be empty")
     private Date date;
 
     @Column(name = "role")
+    @NotEmpty()
     private String role;
 
     public Person(String username, String password, Date date, String role) {
